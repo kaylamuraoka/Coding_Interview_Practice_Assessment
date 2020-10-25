@@ -1,0 +1,107 @@
+body {
+  margin: auto;
+  width: 100%;
+  background-color: #ffffff;
+}
+h1 {
+  font-family: "Abril Fatface", cursive;
+}
+h2 {
+  font-family: "Abril Fatface", cursive;
+}
+h3 {
+  font-family: "Abril Fatface", cursive;
+}
+h4 {
+  font-family: "Abril Fatface", cursive;
+}
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+#timerHighscoresDiv {
+  background: #f5f0ec;
+  font-family: "Open Sans", sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+#main {
+  text-align: center;
+  background: #32485c;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background: #c9bfb5;
+  color: #f9fdff;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 0;
+  transition: all 0.1s ease-in-out;
+  padding: 10px;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #8d857f;
+}
+
+#listEl {
+  background: #97cedb;
+  padding: 20px;
+}
+.container {
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+}
+#viewLeaderboard {
+  float: left;
+  width: 50%;
+  padding: 20px;
+}
+
+#countdown {
+  float: right;
+  width: 50%;
+  padding: 20px;
+}
+
+.wrongAnswerText {
+  color: red;
+}
+
+.correctAnswerText {
+  color: green;
+}
+
+.hide {
+  display: none;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+li {
+  display: block;
+  padding: 10px;
+  background: #ef798e;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 50%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+#finishQuizDiv {
+  text-align: center;
+}

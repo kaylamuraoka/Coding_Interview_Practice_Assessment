@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Interview Practice Assessment</title>
+  <!-- Link to imported font styles -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dawning+of+a+New+Day&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap"
+    rel="stylesheet">
+  <!-- My custom stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- For the countdown timer -->
+  <div class="clearfix" id="timerHighscoresDiv">
+    <button id="viewLeaderboard">View Highscores</button>
+    <h4>Time: <span id="countdown"></span></h4>
+  </div>
+  </div>
+
+  <div id="main">
+  </div>
+
+  <!-- For the questions -->
+  <div id="questionDiv" class="hide">
+    <h1>Question <span id="questionNumber"></span>/10</h1>
+    <h1 id="question"></h1>
+    <ul id="optionsList">
+      <li id="optionA" questionAnswer="A"></li>
+      <li id="optionB" questionAnswer="B"></li>
+      <li id="optionC" questionAnswer="C"></li>
+      <li id="optionD" questionAnswer="D"></li>
+    </ul>
+    <p id="answerEl"></p>
+  </div>
+
+  <div id="finishQuizDiv" class="hide">
+    <h1>Congrats! You Are All Done!</h1>
+    <h4>Your final score is: <span id="score"></span></h4>
+    <h4>Enter your name: <input type="text" id="name" placeholder="your name... "></input></h4>
+    <button id="submitScore">Submit</button>
+  </div>
+
+  <div id="highscores" class="hide">
+    <ul id="leaderboard">
+      <li><strong>Name:</strong> <span id="userName"></span></li>
+      <li><strong>Score:</strong> <span id="userScore"></span></li>
+    </ul>
+    <button id="backToBeginning">Go Back</button>
+    <button id="clearLeaderboard">Clear Highscores</button>
+
+
+  </div>
+
+  <script src="./app.js"></script>
+
+</body>
+
+</html>
