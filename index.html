@@ -14,49 +14,34 @@
 </head>
 
 <body>
-
-  <!-- For the countdown timer -->
-  <div class="clearfix" id="timerHighscoresDiv">
-    <button id="viewLeaderboard">View Highscores</button>
-    <h4>Time: <span id="countdown"></span></h4>
-  </div>
-  </div>
+  <nav id="stats">
+    <button id="viewLeaderboardBtn">View Leaderboard</button>
+    <div class="counterBox">
+      <label id="timerLabel">Time Left: <span id="timerCount"></span></label>
+      <label id="correctALabel">Correct: <span id="correctCount"></span></label>
+      <label id="wrongALabel">Wrong: <span id="wrongCount"></span></label>
+      <label id="remainingQuestionsLabel">Questions Left: <span id="questionsRemainingCount"></span></label>
+    </div>
+  </nav>
 
   <div id="main">
+
   </div>
 
-  <!-- For the questions -->
-  <div id="questionDiv" class="hide">
-    <h1>Question <span id="questionNumber"></span>/10</h1>
-    <h1 id="question"></h1>
-    <ul id="optionsList">
-      <li id="optionA" questionAnswer="A"></li>
-      <li id="optionB" questionAnswer="B"></li>
-      <li id="optionC" questionAnswer="C"></li>
-      <li id="optionD" questionAnswer="D"></li>
-    </ul>
-    <p id="answerEl"></p>
-  </div>
 
-  <div id="finishQuizDiv" class="hide">
-    <h1>Congrats! You Are All Done!</h1>
-    <h4>Your final score is: <span id="score"></span></h4>
-    <h4>Enter your name: <input type="text" id="name" placeholder="your name... "></input></h4>
-    <button id="submitScore">Submit</button>
-  </div>
+  <!-- 
+  
 
-  <div id="highscores" class="hide">
-    <ul id="leaderboard">
+  <div id="leaderboard">
+    <ul id="highscores">
       <li><strong>Name:</strong> <span id="userName"></span></li>
       <li><strong>Score:</strong> <span id="userScore"></span></li>
     </ul>
     <button id="backToBeginning">Go Back</button>
     <button id="clearLeaderboard">Clear Highscores</button>
+  </div> -->
 
-
-  </div>
-
-  <script src="./app.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 

@@ -2,106 +2,166 @@ body {
   margin: auto;
   width: 100%;
   background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  color: #2a211f;
 }
+
+/* Styling of font sizes */
 h1 {
   font-family: "Abril Fatface", cursive;
+  font-size: 28px;
 }
 h2 {
   font-family: "Abril Fatface", cursive;
+  font-size: 23px;
 }
 h3 {
   font-family: "Abril Fatface", cursive;
-}
-h4 {
-  font-family: "Abril Fatface", cursive;
+  font-size: 19px;
 }
 h5 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   line-height: 1.5;
+  font-size: 14px;
 }
-p {
+span {
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-weight: 700;
 }
-#timerHighscoresDiv {
-  background: #f5f0ec;
+
+/* Styling for the top navigation bar with the timer and button to view leaderboard */
+#stats {
+  background: #ccd6dd;
   font-family: "Open Sans", sans-serif;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
 }
+#stats:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#stats #viewLeaderboardBtn {
+  float: left;
+}
+#stats .counterBox {
+  float: right;
+  margin-top: 15px;
+}
+#stats button {
+  background: #4285f4;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  border-radius: 5px;
+  transition: all 0.1s ease-in-out;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#stats label {
+  color: white;
+  border-radius: 5px;
+  padding: 5px 0px 5px 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin: 5px;
+}
+#stats #timerLabel {
+  background: #4285f4;
+}
+#stats #correctALabel {
+  background: #34a853;
+}
+#stats #wrongALabel {
+  background: #ea4335;
+}
+#stats #remainingQuestionsLabel {
+  background: #fbbc05;
+}
+
+#stats #timerCount,
+#stats #wrongCount,
+#stats #correctCount,
+#stats #questionsRemainingCount {
+  color: white;
+  background-color: black;
+  padding: 6px 6px 6px 6px;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+}
+/* End of styling top stats bar */
+
 #main {
   text-align: center;
-  background: #32485c;
-  justify-content: center;
-  align-items: center;
+  background: #fbbc05;
+  margin: 20px;
+  padding: 10%;
+}
+
+.quizInfo {
+  text-align: center;
+  background: #fbbc05;
+  margin: 20px;
+  padding: 10%;
 }
 
 button {
-  background: #c9bfb5;
-  color: #f9fdff;
+  background: #4285f4;
+  color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  border-radius: 0;
+  border-radius: 5px;
   transition: all 0.1s ease-in-out;
-  padding: 10px;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
   transform: scale(1.05);
-  background: #8d857f;
-}
-
-#listEl {
-  background: #97cedb;
-  padding: 20px;
-}
-.container {
-  margin: auto;
-  padding: 20px;
-  width: 100%;
-}
-#viewLeaderboard {
-  float: left;
-  width: 50%;
-  padding: 20px;
-}
-
-#countdown {
-  float: right;
-  width: 50%;
-  padding: 20px;
-}
-
-.wrongAnswerText {
-  color: red;
-}
-
-.correctAnswerText {
-  color: green;
-}
-
-.hide {
-  display: none;
-}
-.clearfix:after {
-  content: "";
-  display: block;
-  clear: both;
+  background: #55acee;
 }
 
 li {
   display: block;
   padding: 10px;
-  background: #ef798e;
-  margin: 10px;
+  background: #4285f4;
+  margin: 15px;
   border-radius: 10px;
   cursor: pointer;
-  width: 50%;
+  text-align: left;
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1.5;
 }
 
 #finishQuizDiv {
   text-align: center;
+}
+
+.emojiImg {
+  height: 50px;
+  width: 50px;
+}
+
+.correctChoice {
+  background: #34a853;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.wrongChoice {
+  background: #ea4335;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  font-weight: 600;
 }
