@@ -2,27 +2,16 @@
 
 ## Description
 
-It’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. This is a simulation of a typical coding assessment. This assessment is a combination of multiple-choice questions and interactive coding challenges.
+It’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. This is a simulation of a typical coding assessment. This assessment is a combination of multiple-choice questions and interactive coding challenges. As A coding boot camp student
+I wanted to take a timed quiz on JavaScript, HTML, CSS, and Bootstrap fundamentals that stores high scores so that I may gauge my progress compared to my peers. This exercise has taught me how to apply my Jasvascript abilities to deal with events, manipulate and traverse the DOM, handle user input, and give feedback to the user.
 
-### User Story
+### How the quiz works
 
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-
-### Acceptance Criteria
-
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+1. When a user clicks the start button, a timer starts and the user is presented with a question.
+2. Once the question is answered, then the user is presented with another question.
+3. When the user answers a question incorrectly, 10 seconds is subtracted from the clock located on the upper right of the webpage.
+4. When all 10 questions are answered or the timer reaches 0, the quiz is over
+5. When the quiz is over, the user can save their name and score.
 
 The following animation demonstrates the application functionality:
 ![Quiz Demonstration](QuizDemo.gif)
