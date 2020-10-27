@@ -1,12 +1,10 @@
-// add elements to the html document and set its attributes
+// global variables
 var remainingSeconds = 60;
 var currentQuestionIndex = 0;
 var correctAnswersCount = 0;
 var wrongAnswersCount = 0;
 var questionsRemainingCount = 10;
-
-// var quizInfoDivEl = document.querySelector("#quizInfo");
-// var quizStartBtnEl = document.querySelector("#quizStartBtn");
+var timer;
 
 var navigationDivEl = document.querySelector("#stats");
 var timerLabelEl = document.querySelector("#timerLabel");
@@ -17,16 +15,9 @@ var wrongCountSpanEl = document.querySelector("#wrongCount");
 var questionsRemainingCountSpanEl = document.querySelector(
   "#questionsRemainingCount"
 );
-
 var mainDivEl = document.querySelector("#main");
 
-var questionsDivEl = document.querySelector("#questions");
-// var questionNumberSpanEl = document.querySelector("#questionNumber");
-
-// var finishQuizDivEl = document.querySelector("#finishQuiz");
-// var leaderboardDivEl = document.querySelector("#leaderboard");
-
-// This  store the details the questions for the quiz.
+// This object stores the details the questions for the quiz.
 var questionsObject = [
   // Question 1
   {
@@ -37,7 +28,7 @@ var questionsObject = [
       "Hyper Text Markup Language",
       "Home Tool Makeshit Ladder",
     ],
-    answer: "C",
+    answer: 3,
   },
   // Question 2
   {
@@ -48,19 +39,19 @@ var questionsObject = [
       "Cool Street Style",
       "Computer Style Sheets",
     ],
-    answer: "B",
+    answer: 2,
   },
   // Question 3
   {
     question: "Who is responsible for making the Web standards?",
     choices: ["The World Wide Web Consortium", "IBM", "Microsofe", "Apple"],
-    answer: "A",
+    answer: 1,
   },
   // Question 4
   {
     question: "What is the correct HTML element for the largest heading?",
     choices: ["<large>", "<head>", "<jumbo>", "<h1>"],
-    answer: "D",
+    answer: 4,
   },
   // Question 5
   {
@@ -72,13 +63,13 @@ var questionsObject = [
       "You should NEVER refernce extenal stylesheets in an HTML document",
       "At the end of the document",
     ],
-    answer: "A",
+    answer: 1,
   },
   // Question 6
   {
     question: "The Bootstrap grid system is based on how many columns?",
     choices: ["6", "8", "10", "12"],
-    answer: "D",
+    answer: 4,
   },
   // Question 7
   {
@@ -90,25 +81,25 @@ var questionsObject = [
       '<script type="script.js">',
       '<script ref="script.js">',
     ],
-    answer: "A",
+    answer: 1,
   },
   // Question 8
   {
     question: "What scripting language is jQuery written in?",
     choices: ["C++", "PHP", "JavaScript", "Python"],
-    answer: "C",
+    answer: 3,
   },
   // Question 9
   {
     question: "What does this comparison operator mean: !=",
     choices: ["not equal", "equal to", "greater than or equal to", "less than"],
-    answer: "A",
+    answer: 1,
   },
   // Question 10
   {
     question: "How is document type initialized in HTML5?",
     choices: ["<!DOCTYPE HTML>", "<HTML>", "</DOCTYPE>", "</DOCTYPE html>"],
-    answer: "A",
+    answer: 1,
   },
 ];
 
@@ -137,164 +128,120 @@ function displayQuizInstructions() {
 
   // add styling conventions
   quizStartBtnEl.addEventListener("click", startQuiz);
+  linkToLeaderboardBtnEl.addEventListener("click", displayHighscores);
 }
 
-// quizStartBtnEl.addEventListener("click", startQuiz);
-
-linkToLeaderboardBtnEl.addEventListener("click", function () {});
-
+// user clicks start button to call this function
 function startQuiz() {
   // Remove content in main div
   removeAllChildNodes(mainDivEl);
-  startTimer();
-  createQuizContent();
-  setQuestions();
-}
-
-// Function that runs Timer until time
-function startTimer() {
-  setInterval(function () {
+  var timer = setInterval(function () {
     remainingSeconds--;
-    if (remainingSeconds >= 0) {
-      timerCountSpanEl.textContent = remainingSeconds + " seconds";
-    }
-    if (remainingSeconds === 0) {
+    // show updated time
+    timerCountSpanEl.textContent = remainingSeconds + " seconds";
+    // tick down every second
+    if (
+      remainingSeconds > 0 &&
+      currentQuestionIndex === questionsObject.length
+    ) {
+      // stop the timer
+      clearInterval(timer);
       endQuiz();
-      outOfTimeMessage();
+      goodJobMessage();
     }
     if (remainingSeconds <= 0) {
+      clearInterval(timer);
       endQuiz();
       outOfTimeMessage();
     }
   }, 1000);
+
+  getQuestions();
 }
 
-function stopTimer() {
-  clearInterval(startTimer);
-}
-
-// Create elements for the quiz contents
+// Create elements for the quiz contents outside of the createQuizElements() function so that the variables can be refrenced in other functions
 var questionLabelEl = document.createElement("h3");
-var questionCountSpanEl = document.createElement("span");
 var questionTextEl = document.createElement("h1");
 var listEl = document.createElement("ul");
-var optionAlistEl = document.createElement("li");
-var optionBlistEl = document.createElement("li");
-var optionClistEl = document.createElement("li");
-var optionDlistEl = document.createElement("li");
 var answerEl = document.createElement("div");
 var answerImgEl = document.createElement("img");
 var answerTextEl = document.createElement("span");
 
-function createQuizContent() {
+function getQuestions() {
   // set text content of elements
-  questionLabelEl.textContent = "Question: ";
   answerImgEl.setAttribute("class", "emojiImg");
-  mainDivEl.setAttribute("background", "lightgrey");
-  // Create a "questionAnswer" attribute and set the value of the attribute and Add the class attribute to <li> elements
-  optionAlistEl.setAttribute("questionAnswer", "A");
-  optionBlistEl.setAttribute("questionAnswer", "B");
-  optionClistEl.setAttribute("questionAnswer", "C");
-  optionDlistEl.setAttribute("questionAnswer", "D");
 
   // append elements
   mainDivEl.appendChild(questionLabelEl);
-  questionLabelEl.appendChild(questionCountSpanEl);
   mainDivEl.appendChild(questionTextEl);
   mainDivEl.appendChild(listEl);
-  listEl.appendChild(optionAlistEl);
-  listEl.appendChild(optionBlistEl);
-  listEl.appendChild(optionClistEl);
-  listEl.appendChild(optionDlistEl);
   mainDivEl.appendChild(answerEl);
   answerEl.appendChild(answerImgEl);
   answerEl.appendChild(answerTextEl);
+
+  // Set text content of question and choices
+  questionTextEl.textContent = questionsObject[currentQuestionIndex].question;
+  questionLabelEl.textContent =
+    "Question: " + (currentQuestionIndex + 1) + "/10";
+  listEl.innerHTML = "";
+  questionsObject[currentQuestionIndex].choices.forEach(function (choice, i) {
+    var choiceEl = document.createElement("li");
+    choiceEl.setAttribute("class", "choice");
+    choiceEl.setAttribute("value", i + 1);
+    choiceEl.textContent = i + 1 + ". " + choice;
+    listEl.appendChild(choiceEl);
+    choiceEl.addEventListener("click", checkAnswer);
+  });
 }
 
-function setQuestions() {
+function checkAnswer() {
+  if (this.value !== questionsObject[currentQuestionIndex].answer) {
+    remainingSeconds -= 10;
+    if (remainingSeconds <= 0) {
+      remainingSeconds = 1;
+      endQuiz();
+    }
+    timerCountSpanEl.textContent = remainingSeconds + " seconds";
+    wrongChoice();
+  } else {
+    correctChoice();
+  }
+  setTimeout(function () {
+    answerEl.setAttribute("style", "display:none");
+  }, 1000);
+  currentQuestionIndex++;
+  questionsRemainingCount--;
+  questionsRemainingCountSpanEl.textContent = questionsRemainingCount;
   if (currentQuestionIndex === questionsObject.length) {
     endQuiz();
     goodJobMessage();
+  } else {
+    getQuestions();
   }
-  // Set text content of question and choices
-  questionTextEl.textContent = questionsObject[currentQuestionIndex].question;
-  questionCountSpanEl.textContent = currentQuestionIndex + 1 + "/10";
-  optionAlistEl.textContent =
-    "A) " + questionsObject[currentQuestionIndex].choices[0];
-  optionBlistEl.textContent =
-    "B) " + questionsObject[currentQuestionIndex].choices[1];
-  optionClistEl.textContent =
-    "C) " + questionsObject[currentQuestionIndex].choices[2];
-  optionDlistEl.textContent =
-    "D) " + questionsObject[currentQuestionIndex].choices[3];
 }
 
-optionAlistEl.addEventListener("click", function () {
-  if (
-    optionAlistEl.getAttribute("questionAnswer") ===
-    questionsObject[currentQuestionIndex].answer
-  ) {
-    correctChoice();
-  } else {
-    incorrectChoice();
-  }
-});
-
-optionBlistEl.addEventListener("click", function () {
-  if (
-    optionBlistEl.getAttribute("questionAnswer") ===
-    questionsObject[currentQuestionIndex].answer
-  ) {
-    correctChoice();
-  } else {
-    incorrectChoice();
-  }
-});
-optionClistEl.addEventListener("click", function () {
-  if (
-    optionClistEl.getAttribute("questionAnswer") ===
-    questionsObject[currentQuestionIndex].answer
-  ) {
-    correctChoice();
-  } else {
-    incorrectChoice();
-  }
-});
-optionDlistEl.addEventListener("click", function () {
-  if (
-    optionDlistEl.getAttribute("questionAnswer") ===
-    questionsObject[currentQuestionIndex].answer
-  ) {
-    correctChoice();
-  } else {
-    incorrectChoice();
-  }
-});
-
 function correctChoice() {
+  answerEl.setAttribute("style", "display: block");
   answerEl.setAttribute("class", "correctChoice");
   answerTextEl.textContent = "Correct! Keep going";
   answerImgEl.setAttribute("src", "./assets/images/correct_answer.png");
   correctAnswersCount++;
   correctCountSpanEl.textContent = correctAnswersCount;
-  questionsRemainingCount--;
-  questionsRemainingCountSpanEl.textContent = questionsRemainingCount;
-  currentQuestionIndex++;
-  setQuestions();
 }
 
-function incorrectChoice() {
-  // Subtract 10 seconds from time
-  remainingSeconds -= 10;
+function wrongChoice() {
+  answerEl.setAttribute("style", "display: block");
   answerEl.setAttribute("class", "wrongChoice");
-  answerTextEl.textContent = "Incorrect! Oops!";
+  answerTextEl.textContent = "Wrong Choice! Oops!";
   answerImgEl.setAttribute("src", "./assets/images/wrong_answer.png");
   wrongAnswersCount++;
   wrongCountSpanEl.textContent = wrongAnswersCount;
-  questionsRemainingCount--;
-  questionsRemainingCountSpanEl.textContent = questionsRemainingCount;
-  currentQuestionIndex++;
-  setQuestions();
+}
+
+function endQuiz() {
+  // Remove content in main div
+  removeAllChildNodes(mainDivEl);
+  createEndQuizContent();
 }
 
 // Function to clear the main div
@@ -304,15 +251,8 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function endQuiz() {
-  // Remove content in main div
-  removeAllChildNodes(mainDivEl);
-  stopTimer();
-  createEndQuizContent();
-}
-
 var endMessageEl = document.createElement("h1");
-var submitFormEl = document.createElement("form");
+// var submitFormEl = document.createElement("form");
 var scoreLabelEl = document.createElement("h5");
 var scoreEl = document.createElement("span");
 var nameLabelEl = document.createElement("label");
@@ -324,15 +264,19 @@ function createEndQuizContent() {
   nameLabelEl.textContent = "Enter your name: ";
   submitNameBtnEl.textContent = "Submit";
   nameInputEl.setAttribute("type", "text");
+  nameInputEl.setAttribute("placeholder", "enter your name...");
 
   mainDivEl.appendChild(endMessageEl);
-  mainDivEl.appendChild(submitFormEl);
-  submitFormEl.appendChild(scoreLabelEl);
-  scoreLabelEl.appendChild(scoreEl);
-  submitFormEl.appendChild(nameLabelEl);
-  submitFormEl.appendChild(nameInputEl);
-  submitFormEl.appendChild(submitNameBtnEl);
+  // mainDivEl.appendChild(submitFormEl);
+  mainDivEl.appendChild(scoreLabelEl);
+  mainDivEl.appendChild(scoreEl);
+  mainDivEl.appendChild(nameLabelEl);
+  mainDivEl.appendChild(nameInputEl);
+  mainDivEl.appendChild(submitNameBtnEl);
+
+  submitNameBtnEl.addEventListener("click", checkUserInput);
 }
+
 function goodJobMessage() {
   endMessageEl.textContent =
     "Nice Job! You Are All Done With " + remainingSeconds + " seconds left!";
@@ -342,5 +286,67 @@ function goodJobMessage() {
 
 function outOfTimeMessage() {
   endMessageEl.textContent = "You ran out of time... Better Luck Next Time";
-  scoreEl.textContent = 0;
+  scoreEl.textContent = remainingSeconds;
+}
+
+function checkUserInput() {
+  if (nameInputEl.value === "") {
+    nameLabelEl.textContent = "Please enter your name: ";
+    var inputErrorAlertEl = document.createElement("h2");
+    inputErrorAlertEl.textContent = "You must enter a name to proceed";
+    inputErrorAlertEl.setAttribute("class", "errorAlert");
+    mainDivEl.appendChild(inputErrorAlertEl);
+    setTimeout(function () {
+      inputErrorAlertEl.setAttribute("style", "display:none");
+    }, 2000);
+    submitNameBtnEl.addEventListener("click", checkUserInput);
+  } else {
+    saveUserScore();
+  }
+}
+
+function saveUserScore() {
+  localStorage.setItem("name", nameInputEl.value);
+  localStorage.setItem("score", remainingSeconds);
+  displayHighscores();
+}
+
+function displayHighscores() {
+  // Remove content in main div
+  removeAllChildNodes(mainDivEl);
+
+  // create content
+  var name = localStorage.getItem("name");
+  var score = localStorage.getItem("score");
+  var newScoreEl = document.createElement("li");
+  newScoreEl.textContent = name + ": " + score;
+
+  var highscoresTitleEl = document.createElement("h1");
+  var highscoresListEl = document.createElement("ul");
+  var backBtnEl = document.createElement("button");
+  var clearBtnEl = document.createElement("button");
+
+  highscoresTitleEl.textContent = "Highscores";
+  backBtnEl.textContent = "Go Back";
+  clearBtnEl.textContent = "Clear Highscores";
+
+  mainDivEl.appendChild(highscoresTitleEl);
+  mainDivEl.appendChild(highscoresListEl);
+  mainDivEl.appendChild(backBtnEl);
+  mainDivEl.appendChild(clearBtnEl);
+  highscoresListEl.appendChild(newScoreEl);
+
+  backBtnEl.addEventListener("click", backToBeginning);
+  clearBtnEl.addEventListener("click", clearLeaderboard);
+}
+
+function backToBeginning() {
+  // Remove content in main div
+  removeAllChildNodes(mainDivEl);
+  displayQuizInstructions();
+}
+
+function clearLeaderboard() {
+  highscoresListEl.children.empty();
+  console.log(highscoresListEl.children);
 }

@@ -16,10 +16,6 @@ h2 {
   font-family: "Abril Fatface", cursive;
   font-size: 23px;
 }
-h3 {
-  font-family: "Abril Fatface", cursive;
-  font-size: 19px;
-}
 h5 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -118,9 +114,10 @@ button {
   font-family: "Open Sans", sans-serif;
   border-radius: 5px;
   transition: all 0.1s ease-in-out;
-  padding: 14px 20px;
+  padding: 12px 16px;
   border: none;
   cursor: pointer;
+  margin: 30px;
 }
 
 button:hover {
@@ -141,10 +138,6 @@ li {
   line-height: 1.5;
 }
 
-#finishQuizDiv {
-  text-align: center;
-}
-
 .emojiImg {
   height: 50px;
   width: 50px;
@@ -158,10 +151,31 @@ li {
   font-weight: 600;
 }
 
-.wrongChoice {
+.wrongChoice,
+.errorAlert {
   background: #ea4335;
   border-radius: 10px;
   color: #ffffff;
   padding: 10px;
   font-weight: 600;
+}
+
+table {
+  padding: 20px;
+  width: 100%;
+  border-radius: 5px;
+}
+table tr {
+  text-align: center;
+  background: #ccd6dd;
+  padding: 30px;
+}
+table th {
+  padding: 10px;
+}
+table td {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  font-size: 14px;
 }
