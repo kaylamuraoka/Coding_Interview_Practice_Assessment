@@ -23,6 +23,8 @@ The following animation demonstrates the application functionality:
 - [Credits](#credits)
 - [License](#license)
 
+## Installation
+
 To install this project locally clone this [**project repository**](https://github.com/kaylamuraoka/Coding_Interview_Practice_Assessment) to your desktop and modify the code to your liking.
 
 ## Usage
