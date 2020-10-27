@@ -20,7 +20,7 @@ h5 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 16px;
 }
 span {
   font-family: "Open Sans", sans-serif;
@@ -98,10 +98,35 @@ span {
   text-align: center;
   background: #fbbc05;
   margin: 20px;
-  padding: 10%;
+  padding: 5%;
+}
+#main label {
+  color: white;
+  border-radius: 5px 0px 0px 5px;
+  padding: 12px 20px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  background: #34a853;
+}
+#main input {
+  color: grey;
+  background-color: white;
+  padding: 13px;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+}
+#main #container {
+  background: lightgrey;
+  padding: 20px;
 }
 
 .quizInfo {
+  text-align: center;
+  background: #fbbc05;
+  margin: 20px;
+  padding: 10%;
+}
+.highscores {
   text-align: center;
   background: #fbbc05;
   margin: 20px;
@@ -124,7 +149,6 @@ button:hover {
   transform: scale(1.05);
   background: #55acee;
 }
-
 li {
   display: block;
   padding: 10px;
@@ -149,6 +173,8 @@ li {
   color: #ffffff;
   padding: 10px;
   font-weight: 600;
+  left: 50%;
+  width: 50%;
 }
 
 .wrongChoice,
@@ -158,6 +184,8 @@ li {
   color: #ffffff;
   padding: 10px;
   font-weight: 600;
+  left: 50%;
+  width: 40%;
 }
 
 table {
