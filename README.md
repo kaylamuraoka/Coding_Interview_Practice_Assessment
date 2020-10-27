@@ -25,6 +25,7 @@ WHEN the game is over
 THEN I can save my initials and score
 
 The following animation demonstrates the application functionality:
+![Quiz Demonstration](QuizDemo.gif)
 
 ## Table of Contents
 
