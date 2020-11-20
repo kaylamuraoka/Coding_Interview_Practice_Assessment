@@ -261,6 +261,7 @@ function createEndQuizContent() {
   submitNameBtnEl.textContent = "Submit";
   nameInputEl.setAttribute("type", "text");
   nameInputEl.setAttribute("placeholder", "enter your name...");
+  nameInputEl.value = "";
   endContainer.setAttribute("style", "background: lightgrey; padding:20px;");
 
   mainDivEl.appendChild(endContainer);
