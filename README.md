@@ -14,7 +14,7 @@ I wanted to take a timed quiz on JavaScript, HTML, CSS, and Bootstrap fundamenta
 5. When the quiz is over, the user can save their name and score.
 
 The following animation demonstrates the application functionality:
-![Quiz Demonstration](QuizDemo.gif)
+![Quiz Demonstration](./assets/images/QuizDemo.gif)
 
 ## Table of Contents
 
