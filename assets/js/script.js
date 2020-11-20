@@ -6,6 +6,9 @@ var wrongAnswersCount = 0;
 var questionsRemainingCount = 10;
 var timer;
 
+// retrieving our scores and converting it back into an array
+var pastScores = JSON.parse(localStorage.getItem("scores"));
+
 var navigationDivEl = document.querySelector("#stats");
 var timerLabelEl = document.querySelector("#timerLabel");
 var timerCountSpanEl = document.querySelector("#timerCount");
@@ -117,16 +120,16 @@ function displayQuizInstructions() {
     "Try your best to answer the following code-related questions within the 60 second time limit. Remember to keep in mind that incorrect answers will penalize your remaining time by ten seconds";
   quizStartBtnEl.textContent = "Start Quiz";
 
-  mainDivEl.appendChild(quizTitleEl);
-  mainDivEl.appendChild(quizDirectionsEl);
-  mainDivEl.appendChild(quizStartBtnEl);
-
   timerCountSpanEl.textContent = remainingSeconds + " seconds";
   correctCountSpanEl.textContent = correctAnswersCount;
   wrongCountSpanEl.textContent = wrongAnswersCount;
   questionsRemainingCountSpanEl.textContent = questionsRemainingCount;
 
-  // add styling conventions
+  mainDivEl.appendChild(quizTitleEl);
+  mainDivEl.appendChild(quizDirectionsEl);
+  mainDivEl.appendChild(quizStartBtnEl);
+
+  // add event listeners to button
   quizStartBtnEl.addEventListener("click", startQuiz);
   linkToLeaderboardBtnEl.addEventListener("click", displayHighscores);
 }
@@ -288,6 +291,7 @@ function outOfTimeMessage() {
   mainDivEl.setAttribute("style", "background: #ea4335;");
 }
 
+// Function to validate user input when submitting score
 function checkUserInput() {
   if (nameInputEl.value === "") {
     nameLabelEl.textContent = "Please enter your name: ";
@@ -304,12 +308,26 @@ function checkUserInput() {
   }
 }
 
+// Function to save user's name and score to local storage as a key-value pair
 function saveUserScore() {
-  localStorage.setItem("name", nameInputEl.value);
-  localStorage.setItem("score", remainingSeconds);
+  if (pastScores === null) {
+    // no scores exist in local storage
+    pastScores = [];
+  }
+
+  var newScoreObj = {
+    name: nameInputEl.value,
+    score: remainingSeconds,
+  };
+
+  pastScores.push(newScoreObj);
+  // storing our array as a string
+  localStorage.setItem("scores", JSON.stringify(pastScores));
+
   displayHighscores();
 }
 
+// Function to display the scores saved in local storage when the quiz is over or when the "View Leaderboard" button is clicked
 function displayHighscores() {
   // Remove content in main div
   removeAllChildNodes(mainDivEl);
@@ -327,18 +345,28 @@ function displayHighscores() {
   mainDivEl.appendChild(backBtnEl);
   mainDivEl.appendChild(clearBtnEl);
   mainDivEl.setAttribute("style", "background: lightgrey;");
-  backBtnEl.addEventListener("click", backToBeginning);
-  clearBtnEl.addEventListener("click", clearHighscoresList);
+  highscoresListEl.setAttribute("id", "highscoresList");
 
-  if (
-    localStorage.getItem("name") !== null &&
-    localStorage.getItem("score") !== null
-  ) {
-    var newScoreEl = document.createElement("li");
-    var name = localStorage.getItem("name");
-    var score = localStorage.getItem("score");
-    newScoreEl.textContent = name + ": " + score;
-    highscoresListEl.appendChild(newScoreEl);
+  if (localStorage.getItem("scores") !== null) {
+    // if scores exist in local storage
+
+    // Initialize maximum score element
+    var highScore = pastScores[0].score;
+
+    for (var i = 0; i < pastScores.length; i++) {
+      // create element to hold each score
+      var newScoreEl = document.createElement("li");
+
+      newScoreEl.textContent = pastScores[i].name + ": " + pastScores[i].score;
+
+      // list highscores in descending order
+      if (pastScores[i].score >= highScore) {
+        highscoresListEl.prepend(newScoreEl);
+        highScore = pastScores[i].score;
+      } else {
+        highscoresListEl.appendChild(newScoreEl);
+      }
+    }
   } else {
     var noHighscoresEl = document.createElement("li");
     noHighscoresEl.textContent = "You do not have any highscores yet!";
@@ -348,6 +376,10 @@ function displayHighscores() {
     );
     highscoresListEl.appendChild(noHighscoresEl);
   }
+
+  // add event listeners to the two buttons
+  backBtnEl.addEventListener("click", backToBeginning);
+  clearBtnEl.addEventListener("click", clearHighscoresList);
 }
 
 function backToBeginning() {
@@ -367,8 +399,9 @@ function resetVariables() {
 }
 
 function clearHighscoresList() {
-  localStorage.removeItem("name");
-  localStorage.removeItem("score");
+  localStorage.removeItem("scores");
+  // empty the pastScores array
+  pastScores = [];
   displayHighscores();
 }
 
