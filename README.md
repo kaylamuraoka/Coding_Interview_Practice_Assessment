@@ -16,6 +16,9 @@ I wanted to take a timed quiz on JavaScript, HTML, CSS, and Bootstrap fundamenta
 The following animation demonstrates the application functionality:
 ![Quiz Demonstration](./assets/images/DemoOfCodeQuiz.gif)
 
+This quiz is responsive, meaning that the layout and content responds and adapts based on the size of screen in which it is presented on. See Example Below:
+![Responsive Views of Application](assets/images/codeQuizResponsiveViews.png)
+
 This screenshot shows the leaderboard that displays the user's name and past scores stored in local storage:
 ![Screenshot of leaderboard](./assets/images/leaderboad_screenshot.png)
 
