@@ -15,14 +15,20 @@
 
 <body>
   <nav id="stats">
-    <button id="viewLeaderboardBtn">View Leaderboard</button>
-    <div class="counterBox">
-      <label id="timerLabel">Time Left: <span id="timerCount"></span></label>
-      <label id="correctALabel">Correct: <span id="correctCount"></span></label>
-      <label id="wrongALabel">Wrong: <span id="wrongCount"></span></label>
-      <label id="remainingQuestionsLabel">Questions Left: <span id="questionsRemainingCount"></span></label>
+    <div class="row">
+      <button id="viewLeaderboardBtn">View Leaderboard</button>
+      <label id="timerLabel" class="float-right">Time Left: <span id="timerCount"></span></label>
+    </div>
+
+    <div class="row">
+      <label id="remainingQuestionsLabel" class="float-right">Questions Left: <span
+          id="questionsRemainingCount"></span></label>
+      <label id="wrongALabel" class="float-right">Wrong: <span id="wrongCount"></span></label>
+      <label id="correctALabel" class="float-right">Correct: <span id="correctCount"></span>
+      </label>
     </div>
   </nav>
+
 
   <div id="main"></div>
 

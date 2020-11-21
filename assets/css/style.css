@@ -10,111 +10,136 @@ body {
 /* Styling of font sizes */
 h1 {
   font-family: "Abril Fatface", cursive;
-  font-size: 28px;
+  font-size: 36px; /* Some tweener fallback */
+  font-size: 5.9vw;
 }
+
 h2 {
   font-family: "Abril Fatface", cursive;
-  font-size: 23px;
+  font-size: 3vh;
 }
+
 h5 {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   line-height: 1.5;
-  font-size: 16px;
+  font-size: 2vmin;
 }
+
 span {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
 
+.row:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.float-right {
+  float: right;
+}
+
 /* Styling for the top navigation bar with the timer and button to view leaderboard */
 #stats {
-  background: #ccd6dd;
+  background: #d8d8d8;
   font-family: "Open Sans", sans-serif;
   text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
+  padding: 8px 3px 8px 3px;
 }
+
 #stats:after {
   content: "";
   display: block;
   clear: both;
 }
+
 #stats #viewLeaderboardBtn {
   float: left;
-}
-#stats .counterBox {
-  float: right;
-  margin-top: 15px;
-}
-#stats button {
   background: #4285f4;
   color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  font-size: 12px;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.1s ease-in-out;
-  padding: 10px 10px;
+  padding: 10px;
   border: none;
   cursor: pointer;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-left: 8px;
+  margin-top: 2px;
+  margin-bottom: 0px;
+  font-weight: bold;
 }
+
 #stats label {
   color: white;
-  border-radius: 5px;
-  padding: 5px 0px 5px 10px;
+  border-radius: 4px;
+  padding: 5px 0px 5px 5px;
+  font-weight: bold;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  margin: 5px;
+  margin: 5px 7px 3px 0px;
 }
+
 #stats #timerLabel {
   background: #4285f4;
+  margin-top: 2px;
+  padding: 10px 0px 10px 10px;
 }
+
 #stats #correctALabel {
   background: #34a853;
 }
+
 #stats #wrongALabel {
   background: #ea4335;
 }
+
 #stats #remainingQuestionsLabel {
   background: #fbbc05;
 }
 
-#stats #timerCount,
+#stats #timerCount {
+  padding: 10px 10px 10px 7px;
+  background-color: #383838;
+  border: none;
+  border-radius: 0px 4px 4px 0px;
+}
+
 #stats #wrongCount,
 #stats #correctCount,
 #stats #questionsRemainingCount {
-  color: white;
-  background-color: black;
-  padding: 6px 6px 6px 6px;
+  background-color: #383838;
+  padding: 5px 5px 5px 5px;
   border: none;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 4px 4px 0px;
 }
 /* End of styling top stats bar */
 
+/* styling for the main section */
 #main {
   text-align: center;
   background: #fbbc05;
-  margin: 20px;
-  padding: 5%;
+  margin: 12px;
+  padding: 10px;
 }
+
 #main label {
   color: white;
-  border-radius: 5px 0px 0px 5px;
-  padding: 12px 20px;
+  border-radius: 4px 0px 0px 4px;
+  padding: 12px 3px 12px 12px;
   font-family: "Open Sans", sans-serif;
-  font-size: 15px;
   background: #34a853;
+  font-weight: bold;
 }
+
 #main input {
-  color: grey;
+  color: #2a211f;
   background-color: white;
-  padding: 13px;
+  padding: 13px 0px 13px 8px;
   border: none;
   border-radius: 0px 5px 5px 0px;
 }
+
 #main #container {
   background: lightgrey;
   padding: 20px;
@@ -126,6 +151,7 @@ span {
   margin: 20px;
   padding: 10%;
 }
+
 .highscores {
   text-align: center;
   background: #fbbc05;
@@ -137,12 +163,13 @@ button {
   background: #4285f4;
   color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.1s ease-in-out;
-  padding: 12px 16px;
+  padding: 10px;
   border: none;
   cursor: pointer;
-  margin: 30px;
+  margin: 7px;
+  font-weight: bold;
 }
 
 button:hover {
@@ -152,19 +179,23 @@ button:hover {
 li {
   display: block;
   padding: 10px;
-  background: #4285f4;
+  background: #55acee;
   margin: 15px;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
   text-align: left;
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   line-height: 1.5;
 }
+li:hover {
+  background: #4285f4;
+}
 
 .emojiImg {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
+  border: none;
 }
 
 .correctChoice {
@@ -206,4 +237,136 @@ table td {
   font-weight: 300;
   line-height: 1.5;
   font-size: 14px;
+}
+
+.hide {
+  display: none;
+}
+
+/* media queries */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 23px;
+  }
+  h3 {
+    font-size: 19px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  h5,
+  #main label,
+  button {
+    font-size: 12px;
+  }
+  #stats label,
+  #stats #viewLeaderboardBtn {
+    font-size: 10px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 23px;
+  }
+  h3 {
+    font-size: 19px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  h5,
+  #main label,
+  button {
+    font-size: 12px;
+  }
+  #stats label,
+  #stats #viewLeaderboardBtn {
+    font-size: 11px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 19px;
+  }
+  h4 {
+    font-size: 17px;
+  }
+  h5,
+  #main label,
+  button {
+    font-size: 14px;
+  }
+  #stats label,
+  #stats #viewLeaderboardBtn {
+    font-size: 13px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  h1 {
+    font-size: 42px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  h4 {
+    font-size: 19px;
+  }
+  h5,
+  #main label,
+  button {
+    font-size: 15px;
+  }
+  #stats label,
+  #stats #viewLeaderboardBtn {
+    font-size: 14px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* hi-res laptops and desktops */
+  h1 {
+    font-size: 42px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  h4 {
+    font-size: 19px;
+  }
+  h5,
+  #main label,
+  button {
+    font-size: 18px;
+  }
+  #stats label,
+  #stats #viewLeaderboardBtn {
+    font-size: 14px;
+  }
 }

@@ -47,7 +47,7 @@ var questionsObject = [
   // Question 3
   {
     question: "Who is responsible for making the Web standards?",
-    choices: ["The World Wide Web Consortium", "IBM", "Microsofe", "Apple"],
+    choices: ["The World Wide Web Consortium", "IBM", "Microsoft", "Apple"],
     answer: 1,
   },
   // Question 4
@@ -167,21 +167,24 @@ var questionLabelEl = document.createElement("h3");
 var questionTextEl = document.createElement("h1");
 var listEl = document.createElement("ul");
 var answerEl = document.createElement("div");
+var answerBoxEl = document.createElement("div");
 var answerImgEl = document.createElement("img");
 var answerTextEl = document.createElement("span");
 
 function getQuestions() {
   // set text content of elements
+  mainDivEl.setAttribute("style", "background: #ccd6dd;");
+  answerEl.classList.add("d-flex", "justify-content-center");
   answerImgEl.setAttribute("class", "emojiImg");
-  mainDivEl.setAttribute("style", "background: lightgrey");
 
   // append elements
   mainDivEl.appendChild(questionLabelEl);
   mainDivEl.appendChild(questionTextEl);
   mainDivEl.appendChild(listEl);
   mainDivEl.appendChild(answerEl);
-  answerEl.appendChild(answerImgEl);
-  answerEl.appendChild(answerTextEl);
+  answerEl.appendChild(answerBoxEl);
+  answerBoxEl.appendChild(answerImgEl);
+  answerBoxEl.appendChild(answerTextEl);
 
   // Set text content of question and choices
   questionTextEl.textContent = questionsObject[currentQuestionIndex].question;
@@ -224,8 +227,7 @@ function checkAnswer() {
 }
 
 function correctChoice() {
-  answerEl.setAttribute("style", "display: block");
-  answerEl.setAttribute("class", "correctChoice");
+  answerBoxEl.setAttribute("style", "background: #34a853");
   answerTextEl.textContent = "Correct! Keep going";
   answerImgEl.setAttribute("src", "./assets/images/correct_answer.png");
   correctAnswersCount++;
@@ -233,8 +235,7 @@ function correctChoice() {
 }
 
 function wrongChoice() {
-  answerEl.setAttribute("style", "display: block");
-  answerEl.setAttribute("class", "wrongChoice");
+  answerEl.setAttribute("style", "background: #ea4335");
   answerTextEl.textContent = "Wrong Choice! Oops!";
   answerImgEl.setAttribute("src", "./assets/images/wrong_answer.png");
   wrongAnswersCount++;
@@ -295,7 +296,7 @@ function outOfTimeMessage() {
 // Function to validate user input when submitting score
 function checkUserInput() {
   if (nameInputEl.value === "") {
-    nameLabelEl.textContent = "Please enter your name: ";
+    nameLabelEl.textContent = "Enter your name: ";
     var inputErrorAlertEl = document.createElement("h2");
     inputErrorAlertEl.textContent = "You must enter a name to proceed";
     inputErrorAlertEl.setAttribute("class", "errorAlert");
