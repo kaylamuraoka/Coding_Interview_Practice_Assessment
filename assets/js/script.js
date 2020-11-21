@@ -213,7 +213,7 @@ function checkAnswer() {
     correctChoice();
   }
   setTimeout(function () {
-    answerEl.setAttribute("style", "display:none");
+    answerEl.classList.add("hide");
   }, 1000);
   currentQuestionIndex++;
   questionsRemainingCount--;
@@ -248,31 +248,38 @@ function endQuiz() {
   createEndQuizContent();
 }
 var endContainer = document.createElement("div");
-var endMessageEl = document.createElement("h1");
+var endMessageEl = document.createElement("h2");
 var submitFormEl = document.createElement("form");
-var scoreLabelEl = document.createElement("h2");
+var scoreLabelEl = document.createElement("label");
 var scoreEl = document.createElement("span");
+var lineBreak = document.createElement("br");
 var nameLabelEl = document.createElement("label");
 var nameInputEl = document.createElement("input");
 var submitNameBtnEl = document.createElement("button");
+var inputErrorAlertEl = document.createElement("h5");
 
 function createEndQuizContent() {
   scoreLabelEl.textContent = "Your final score is: ";
   nameLabelEl.textContent = "Enter your name: ";
   submitNameBtnEl.textContent = "Submit";
   nameInputEl.setAttribute("type", "text");
-  nameInputEl.setAttribute("placeholder", "enter your name...");
+  nameInputEl.setAttribute("placeholder", "e.g., John Doe");
   nameInputEl.value = "";
-  endContainer.setAttribute("style", "background: lightgrey; padding:20px;");
+  inputErrorAlertEl.classList.add("hide", "inputError");
+  endContainer.setAttribute("style", "background: #E8E8E8; padding: 10px;");
+  scoreLabelEl.setAttribute("id", "finalScoreLabel");
+  scoreEl.setAttribute("id", "finalScore");
 
   mainDivEl.appendChild(endContainer);
   endContainer.appendChild(endMessageEl);
   endContainer.appendChild(submitFormEl);
   endContainer.appendChild(scoreLabelEl);
   scoreLabelEl.appendChild(scoreEl);
+  endContainer.appendChild(lineBreak);
   endContainer.appendChild(nameLabelEl);
   endContainer.appendChild(nameInputEl);
   endContainer.appendChild(submitNameBtnEl);
+  endContainer.appendChild(inputErrorAlertEl);
 
   submitNameBtnEl.addEventListener("click", checkUserInput);
 }
@@ -296,13 +303,11 @@ function outOfTimeMessage() {
 // Function to validate user input when submitting score
 function checkUserInput() {
   if (nameInputEl.value === "") {
-    nameLabelEl.textContent = "Enter your name: ";
-    var inputErrorAlertEl = document.createElement("h2");
-    inputErrorAlertEl.textContent = "You must enter a name to proceed";
-    inputErrorAlertEl.setAttribute("class", "errorAlert");
-    mainDivEl.appendChild(inputErrorAlertEl);
+    // input is left blank
+    inputErrorAlertEl.classList.remove("hide");
+    inputErrorAlertEl.textContent = "You must enter your name to proceed";
     setTimeout(function () {
-      inputErrorAlertEl.setAttribute("style", "display:none");
+      inputErrorAlertEl.classList.add("hide");
     }, 2000);
     submitNameBtnEl.addEventListener("click", checkUserInput);
   } else {
@@ -336,18 +341,30 @@ function displayHighscores() {
 
   // create content
   var highscoresTitleEl = document.createElement("h1");
-  var highscoresListEl = document.createElement("ul");
+  var highscoresListEl = document.createElement("table");
+  var tblHeaderEl = document.createElement("thead");
+  var highscoresTableRow = document.createElement("tr");
+  var nameColHeaderEl = document.createElement("th");
+  var scoreColHeaderEl = document.createElement("th");
+  var tblBodyEl = document.createElement("tbody");
   var backBtnEl = document.createElement("button");
   var clearBtnEl = document.createElement("button");
   highscoresTitleEl.textContent = "Highscores";
   backBtnEl.textContent = "Back to Beginning";
   clearBtnEl.textContent = "Clear Highscores";
-  mainDivEl.appendChild(highscoresTitleEl);
-  mainDivEl.appendChild(highscoresListEl);
-  mainDivEl.appendChild(backBtnEl);
-  mainDivEl.appendChild(clearBtnEl);
+  nameColHeaderEl.textContent = "Player";
+  scoreColHeaderEl.textContent = "Score";
   mainDivEl.setAttribute("style", "background: lightgrey;");
   highscoresListEl.setAttribute("id", "highscoresList");
+
+  mainDivEl.appendChild(highscoresTitleEl);
+  mainDivEl.appendChild(highscoresListEl);
+  highscoresListEl.appendChild(tblHeaderEl);
+  tblHeaderEl.appendChild(nameColHeaderEl);
+  tblHeaderEl.appendChild(scoreColHeaderEl);
+  highscoresListEl.appendChild(tblBodyEl);
+  mainDivEl.appendChild(backBtnEl);
+  mainDivEl.appendChild(clearBtnEl);
 
   if (localStorage.getItem("scores") !== null) {
     // if scores exist in local storage
@@ -357,26 +374,31 @@ function displayHighscores() {
 
     for (var i = 0; i < pastScores.length; i++) {
       // create element to hold each score
-      var newScoreEl = document.createElement("li");
+      var newTableRow = document.createElement("tr");
+      var newNameEl = document.createElement("td");
+      var newScoreEl = document.createElement("td");
 
-      newScoreEl.textContent = pastScores[i].name + ": " + pastScores[i].score;
+      newNameEl.textContent = pastScores[i].name;
+      newScoreEl.textContent = pastScores[i].score;
+
+      newTableRow.appendChild(newNameEl);
+      newTableRow.appendChild(newScoreEl);
 
       // list highscores in descending order
       if (pastScores[i].score >= highScore) {
-        highscoresListEl.prepend(newScoreEl);
+        tblBodyEl.prepend(newTableRow);
         highScore = pastScores[i].score;
       } else {
-        highscoresListEl.appendChild(newScoreEl);
+        tblBodyEl.appendChild(newTableRow);
       }
     }
   } else {
-    var noHighscoresEl = document.createElement("li");
-    noHighscoresEl.textContent = "You do not have any highscores yet!";
-    highscoresListEl.setAttribute(
-      "style",
-      "text-align:center; background: none"
-    );
-    highscoresListEl.appendChild(noHighscoresEl);
+    var noHighscoresEl = document.createElement("tr");
+    var noHighscoresTextEl = document.createElement("td");
+    noHighscoresTextEl.textContent = "You do not have any highscores yet!";
+    noHighscoresTextEl.setAttribute("colspan", "2");
+    noHighscoresEl.appendChild(noHighscoresTextEl);
+    tblBodyEl.appendChild(noHighscoresEl);
   }
 
   // add event listeners to the two buttons

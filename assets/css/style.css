@@ -126,18 +126,27 @@ span {
 #main label {
   color: white;
   border-radius: 4px 0px 0px 4px;
-  padding: 12px 3px 12px 12px;
+  padding: 10px 0px 12px 12px;
   font-family: "Open Sans", sans-serif;
-  background: #34a853;
+  background: #55acee;
   font-weight: bold;
 }
 
 #main input {
   color: #2a211f;
   background-color: white;
-  padding: 13px 0px 13px 8px;
+  padding: 12px 0px 12px 8px;
   border: none;
+  margin-top: 25px;
+  width: 100px;
   border-radius: 0px 5px 5px 0px;
+}
+
+#main .inputError {
+  color: #ea4335;
+  margin: 5px;
+  padding: 0px;
+  font-weight: bold;
 }
 
 #main #container {
@@ -145,18 +154,25 @@ span {
   padding: 20px;
 }
 
+#main #finalScoreLabel {
+  background: #fbbc05;
+  margin-top: 20px;
+  padding: 10px 0px 10px 10px;
+  margin-bottom: 20px;
+}
+
+#main #finalScore {
+  padding: 10px 10px 10px 7px;
+  background-color: #383838;
+  border: none;
+  border-radius: 0px 4px 4px 0px;
+}
+
 .quizInfo {
   text-align: center;
   background: #fbbc05;
   margin: 20px;
-  padding: 10%;
-}
-
-.highscores {
-  text-align: center;
-  background: #fbbc05;
-  margin: 20px;
-  padding: 10%;
+  padding: 15px;
 }
 
 button {
@@ -169,25 +185,30 @@ button {
   border: none;
   cursor: pointer;
   margin: 7px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 button:hover {
   transform: scale(1.05);
   background: #55acee;
 }
+
+/* styling for quiz question options */
 li {
   display: block;
-  padding: 10px;
+  width: 85%;
+  padding: 7px;
   background: #55acee;
-  margin: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 4px;
   cursor: pointer;
   text-align: left;
   font-family: "Open Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.5;
 }
+
 li:hover {
   background: #4285f4;
 }
@@ -222,21 +243,21 @@ li:hover {
 table {
   padding: 20px;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 4px;
 }
-table tr {
-  text-align: center;
-  background: #ccd6dd;
-  padding: 30px;
-}
-table th {
+
+table thead th {
+  background: #2a211f;
+  color: white;
   padding: 10px;
 }
-table td {
+
+table tbody td {
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
-  line-height: 1.5;
-  font-size: 14px;
+  color: #2a211f;
+  background: #55acee;
+  padding: 4px;
+  font-weight: bold;
 }
 
 .hide {
@@ -255,12 +276,15 @@ table td {
   h3 {
     font-size: 19px;
   }
-  h4 {
+  h4,
+  table thead th {
     font-size: 15px;
   }
   h5,
   #main label,
-  button {
+  button,
+  table tbody td,
+  li {
     font-size: 12px;
   }
   #stats label,
@@ -280,12 +304,15 @@ table td {
   h3 {
     font-size: 19px;
   }
-  h4 {
+  h4,
+  table thead th {
     font-size: 15px;
   }
   h5,
   #main label,
-  button {
+  button,
+  table tbody td,
+  li {
     font-size: 12px;
   }
   #stats label,
@@ -305,12 +332,15 @@ table td {
   h3 {
     font-size: 19px;
   }
-  h4 {
+  h4,
+  table thead th {
     font-size: 17px;
   }
   h5,
   #main label,
-  button {
+  button,
+  table tbody td,
+  li {
     font-size: 14px;
   }
   #stats label,
@@ -331,12 +361,15 @@ table td {
   h3 {
     font-size: 25px;
   }
-  h4 {
+  h4,
+  table thead th {
     font-size: 19px;
   }
   h5,
   #main label,
-  button {
+  button,
+  table tbody td,
+  li {
     font-size: 15px;
   }
   #stats label,
@@ -357,12 +390,15 @@ table td {
   h3 {
     font-size: 25px;
   }
-  h4 {
+  h4,
+  table thead th {
     font-size: 19px;
   }
   h5,
   #main label,
-  button {
+  button,
+  table tbody td,
+  li {
     font-size: 18px;
   }
   #stats label,
