@@ -175,7 +175,8 @@ function getQuestions() {
   // set text content of elements
   mainDivEl.setAttribute("style", "background: #ccd6dd;");
   answerEl.classList.add("d-flex", "justify-content-center");
-  answerImgEl.setAttribute("class", "emojiImg");
+  answerBoxEl.classList.add("answerBox");
+  answerImgEl.classList.add("emojiImg");
 
   // append elements
   mainDivEl.appendChild(questionLabelEl);
@@ -227,6 +228,7 @@ function checkAnswer() {
 }
 
 function correctChoice() {
+  answerEl.classList.remove("hide");
   answerBoxEl.setAttribute("style", "background: #34a853");
   answerTextEl.textContent = "Correct! Keep going";
   answerImgEl.setAttribute("src", "./assets/images/correct_answer.png");
@@ -235,7 +237,8 @@ function correctChoice() {
 }
 
 function wrongChoice() {
-  answerEl.setAttribute("style", "background: #ea4335");
+  answerEl.classList.remove("hide");
+  answerBoxEl.setAttribute("style", "background: #ea4335");
   answerTextEl.textContent = "Wrong Choice! Oops!";
   answerImgEl.setAttribute("src", "./assets/images/wrong_answer.png");
   wrongAnswersCount++;
@@ -266,7 +269,7 @@ function createEndQuizContent() {
   nameInputEl.setAttribute("placeholder", "e.g., John Doe");
   nameInputEl.value = "";
   inputErrorAlertEl.classList.add("hide", "inputError");
-  endContainer.setAttribute("style", "background: #E8E8E8; padding: 10px;");
+  endContainer.classList.add("endScreenContainer");
   scoreLabelEl.setAttribute("id", "finalScoreLabel");
   scoreEl.setAttribute("id", "finalScore");
 
@@ -289,7 +292,10 @@ function goodJobMessage() {
     "Nice Job! You Are All Done With " + remainingSeconds + " seconds left!";
   scoreEl.textContent = remainingSeconds;
   timerCountSpanEl.textContent = remainingSeconds + " seconds";
-  mainDivEl.setAttribute("style", "background: #34a853;");
+  mainDivEl.setAttribute(
+    "style",
+    "background: #34a853; padding-top: 30px; padding-bottom: 30px;"
+  );
 }
 
 function outOfTimeMessage() {
@@ -297,7 +303,10 @@ function outOfTimeMessage() {
   remainingSeconds = 0;
   scoreEl.textContent = remainingSeconds;
   timerCountSpanEl.textContent = remainingSeconds + " seconds";
-  mainDivEl.setAttribute("style", "background: #ea4335;");
+  mainDivEl.setAttribute(
+    "style",
+    "background: #ea4335; padding-top: 30px; padding-bottom: 30px;"
+  );
 }
 
 // Function to validate user input when submitting score

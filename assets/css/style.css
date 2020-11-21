@@ -120,7 +120,7 @@ span {
   text-align: center;
   background: #fbbc05;
   margin: 12px;
-  padding: 10px;
+  padding: 20px;
 }
 
 #main label {
@@ -142,11 +142,20 @@ span {
   border-radius: 0px 5px 5px 0px;
 }
 
-#main .inputError {
+#main .inputError,
+.wrongAnswer {
   color: #ea4335;
   margin: 5px;
   padding: 0px;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+#main .inputError,
+.correctAnswer {
+  color: #34a853;
+  margin: 5px;
+  padding: 0px;
+  font-weight: 600;
 }
 
 #main #container {
@@ -172,7 +181,7 @@ span {
   text-align: center;
   background: #fbbc05;
   margin: 20px;
-  padding: 15px;
+  padding: 30px;
 }
 
 button {
@@ -219,27 +228,19 @@ li:hover {
   border: none;
 }
 
-.correctChoice {
-  background: #34a853;
-  border-radius: 10px;
+.answerBox {
   color: #ffffff;
   padding: 10px;
   font-weight: 600;
-  left: 50%;
-  width: 50%;
 }
 
-.wrongChoice,
-.errorAlert {
-  background: #ea4335;
-  border-radius: 10px;
-  color: #ffffff;
-  padding: 10px;
-  font-weight: 600;
-  left: 50%;
-  width: 40%;
+.endScreenContainer {
+  background: #e8e8e8;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
+/* styling the highscores table */
 table {
   padding: 20px;
   width: 100%;
@@ -257,7 +258,7 @@ table tbody td {
   color: #2a211f;
   background: #55acee;
   padding: 4px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .hide {
@@ -284,7 +285,9 @@ table tbody td {
   #main label,
   button,
   table tbody td,
-  li {
+  li,
+  .correctAnswer,
+  .wrongAnswer {
     font-size: 12px;
   }
   #stats label,
@@ -312,7 +315,9 @@ table tbody td {
   #main label,
   button,
   table tbody td,
-  li {
+  li,
+  .correctAnswer,
+  .wrongAnswer {
     font-size: 12px;
   }
   #stats label,
@@ -340,7 +345,9 @@ table tbody td {
   #main label,
   button,
   table tbody td,
-  li {
+  li,
+  .correctAnswer,
+  .wrongAnswer {
     font-size: 14px;
   }
   #stats label,
@@ -369,7 +376,9 @@ table tbody td {
   #main label,
   button,
   table tbody td,
-  li {
+  li,
+  .correctAnswer,
+  .wrongAnswer {
     font-size: 15px;
   }
   #stats label,
@@ -398,7 +407,9 @@ table tbody td {
   #main label,
   button,
   table tbody td,
-  li {
+  li,
+  .correctAnswer,
+  .wrongAnswer {
     font-size: 18px;
   }
   #stats label,
