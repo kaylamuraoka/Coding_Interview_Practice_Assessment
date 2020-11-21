@@ -28,7 +28,7 @@ This screenshot shows the leaderboard that displays the user's name and past sco
 
 ## Installation
 
-To install this project locally clone this [**project repository**](https://github.com/kaylamuraoka/Coding_Interview_Practice_Assessment) to your desktop and modify the code to your liking.
+To install this project locally clone this [**project repository**](https://github.com/kaylamuraoka/Coding_Interview_Practice_Assessment) to create a local copy on your computer and sync between the two locations. You may then modify the code to your liking. For steps on how to clone a repository using the command line, read this section of the GitHub Docs [**about cloning a repository**](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository#about-cloning-a-repository).
 
 ## Usage
 
