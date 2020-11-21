@@ -1,4 +1,4 @@
-# Coding_Interview_Practice_Assessment
+# Coding Interview Practice Assessment
 
 ## Description
 
@@ -13,13 +13,16 @@ I wanted to take a timed quiz on JavaScript, HTML, CSS, and Bootstrap fundamenta
 4. When all 10 questions are answered or the timer reaches 0, the quiz is over
 5. When the quiz is over, the user can save their name and score.
 
-The following animation demonstrates the application functionality:
+##### The following animation demonstrates the application functionality:
+
 ![Quiz Demonstration](./assets/images/DemoOfCodeQuiz.gif)
 
-This quiz is responsive, meaning that the layout and content responds and adapts based on the size of screen in which it is presented on. See Example Below:
+###### This quiz is responsive, meaning that the layout and content responds and adapts based on the size of screen in which it is presented on. See Example Below:
+
 ![Responsive Views of Application](assets/images/codeQuizResponsiveViews.png)
 
-This screenshot shows the leaderboard that displays the user's name and past scores stored in local storage:
+##### This screenshot shows the leaderboard that displays the user's name and past scores stored in local storage:
+
 ![Screenshot of leaderboard](./assets/images/leaderboad_screenshot.png)
 
 ## Table of Contents
